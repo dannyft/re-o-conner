@@ -19,7 +19,7 @@ fi
 # Assetfinder
 #
 echo "[+] Harvesting subdomains with assetfinder"
-docker run -it --rm assetfinder $url > $url/recon/tmp_assetfinder.txt
+docker run -i --rm assetfinder $url > $url/recon/tmp_assetfinder.txt
 grep $url $url/recon/tmp_assetfinder.txt > $url/recon/assetfinder.txt
 rm $url/recon/tmp_assetfinder.txt
 
@@ -27,14 +27,14 @@ rm $url/recon/tmp_assetfinder.txt
 # Amass
 #
 echo "[+] Harvesting subdomains with amass"
-docker run -it --rm caffix/amass enum -d $url > $url/recon/amass.txt
+docker run -i --rm caffix/amass enum -d $url > $url/recon/amass.txt
 
 #
 # One for all
 #
 echo "[+] Harvesting subdomains with OneForAll"
 mkdir $url/recon/oneforall
-docker run -it --rm -v $(pwd)/$url/recon/oneforall:/opt/oneforall/results oneforall --target $url run
+docker run -i --rm -v $(pwd)/$url/recon/oneforall:/opt/oneforall/results oneforall --target $url run
 
 #
 # Concat subdomains
